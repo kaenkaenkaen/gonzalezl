@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>عائلة Gonzalez - الصفحة الرئيسية</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      direction: rtl;
+      background: url('assets/images/background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #FFFFFF;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .logo-splash {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+
+    .logo-splash img {
+      width: 200px;
+      animation: splashAnimation 2s ease forwards;
+    }
+
+    @keyframes splashAnimation {
+      0% { transform: scale(1) rotate(0deg); opacity: 1; }
+      50% { transform: scale(1.5) rotate(360deg); opacity: 1; }
+      100% { transform: scale(0.5) rotate(720deg); opacity: 0; }
+    }
+
+    .logo-splash.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    header {
+      background: rgba(28, 37, 38, 0.9);
+      padding: 15px 20px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 0 15px rgba(30, 144, 255, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 25px;
+      cursor: pointer;
+      z-index: 15;
+    }
+
+    .hamburger span {
+      background: #FFFFFF;
+      height: 3px;
+      width: 100%;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    .nav-menu {
+      display: flex;
+      justify-content: center;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+    }
+
+    nav ul li {
+      margin: 0 20px;
+    }
+
+    nav ul li a {
+      color: #FFFFFF;
+      text-decoration: none;
+      font-size: 20px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      background: linear-gradient(45deg, #1E90FF, #1C2526);
+      color: #FFFFFF;
+      box-shadow: 0 0 10px rgba(30, 144, 255, 0.7);
+    }
+
+    main {
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: 'Amiri', serif;
+      font-size: 48px;
+      color: #FFFFFF;
+      text-shadow: 0 0 10px #1E90FF;
+      margin-bottom: 40px;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #1E90FF, 0 0 20px #1C2526; }
+      to { text-shadow: 0 0 20px #1E90FF, 0 0 30px #1C2526; }
+    }
+
+    .team-section {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      justify-items: center;
+      margin: 40px 0;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .team-card {
+      background: rgba(28, 37, 38, 0.75);
+      padding: 20px;
+      border-radius: 10px;
+      width: 220px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(30, 144, 255, 0.5);
+      opacity: 0;
+      animation: slideIn 0.8s ease forwards;
+      animation-delay: calc(0.2s * var(--i));
+      transition: transform 0.3s ease;
+    }
+
+    .team-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .team-card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      border: 2px solid #1E90FF;
+    }
+
+    .team-card h3 {
+      font-size: 24px;
+      color: #FFFFFF;
+      margin-bottom: 10px;
+    }
+
+    .team-card p {
+      font-size: 16px;
+      color: #1E90FF;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .join-button {
+      display: block;
+      text-align: center;
+      background: linear-gradient(45deg, #1C2526, #1E90FF);
+      color: #FFFFFF;
+      padding: 15px 30px;
+      border-radius: 50px;
+      font-size: 24px;
+      text-decoration: none;
+      margin: 30px auto;
+      width: fit-content;
+      box-shadow: 0 0 20px rgba(30, 144, 255, 0.7);
+      transition: all 0.3s ease;
+      animation: bounce 2s infinite;
+    }
+
+    .join-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px rgba(30, 144, 255, 1);
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .discord-logo {
+      display: block;
+      margin: 10px auto;
+      width: 50px;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
+      animation-delay: 0.5s;
+      transition: transform 0.3s ease;
+    }
+
+    .discord-logo:hover {
+      transform: scale(1.1);
+    }
+
+    .datetime-display {
+      font-family: 'Amiri', serif;
+      font-size: 24px;
+      color: #1E90FF;
+      text-shadow: 0 0 10px #1E90FF;
+      background: rgba(28, 37, 38, 0.75);
+      padding: 10px 20px;
+      border-radius: 10px;
+      margin: 20px auto;
+      width: fit-content;
+      box-shadow: 0 0 15px rgba(30, 144, 255, 0.5);
+      animation: pulse 1s infinite alternate;
+    }
+
+    @keyframes pulse {
+      from { transform: scale(1); }
+      to { transform: scale(1.05); }
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .social-links a {
+      display: inline-block;
+    }
+
+    .social-links img {
+      width: 40px;
+      transition: transform 0.3s ease;
+    }
+
+    .social-links img:hover {
+      transform: scale(1.2);
+    }
+
+    footer {
+      background: rgba(28, 37, 38, 0.9);
+      padding: 15px 0;
+      text-align: center;
+      color: #FFFFFF;
+      font-family: 'Amiri', serif;
+      font-size: 16px;
+      text-shadow: 0 0 5px rgba(30, 144, 255, 0.5);
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 250px;
+        background: rgba(28, 37, 38, 0.95);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.3s ease;
+        z-index: 10;
+        box-shadow: -5px 0 15px rgba(30, 144, 255, 0.5);
+      }
+
+      .nav-menu.active {
+        right: 0;
+      }
+
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+      }
+
+      nav ul li {
+        margin: 15px 0;
+      }
+
+      nav ul li a {
+        font-size: 22px;
+        padding: 15px;
+        display: block;
+        width: 100%;
+        text-align: center;
+      }
+
+      .nav-menu.active ul li {
+        animation: fadeInMenu 0.5s ease forwards;
+        animation-delay: calc(0.1s * var(--i));
+      }
+
+      @keyframes fadeInMenu {
+        from { opacity: 0; transform: translateX(20px); }
+        to { opacity: 1; transform: translateX(0); }
+      }
+
+      h1 { font-size: 36px; }
+      .team-section { grid-template-columns: 1fr; }
+      .team-card { width: 100%; max-width: 300px; }
+      .join-button { font-size: 18px; padding: 12px 25px; }
+      .discord-logo { width: 40px; }
+      .logo-splash img { width: 150px; }
+      .datetime-display { font-size: 18px; }
+      .social-links img { width: 30px; }
+      footer { font-size: 14px; }
+    }
+
+    @media (max-width: 1024px) {
+      .team-section {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="logo-splash">
+    <img src="assets/images/logo.png" alt="Gonzalez Logo">
+  </div>
+
+  <div id="particles-js"></div>
+
+  <header>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav class="nav-menu">
+      <ul>
+        <li style="--i: 1;"><a href="index.html">الرئيسية</a></li>
+        <li style="--i: 2;"><a href="archive.html">الأرشيف</a></li>
+        <li style="--i: 3;"><a href="about.html">عن العائلة</a></li>
+        <li style="--i: 4;"><a href="rules.html">القوانين</a></li>
+        <li style="--i: 5;"><a href="contact.html">تواصل معنا</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>مرحبًا بك في عائلة Gonzalez!</h1>
+
+    <div class="team-section">
+      <div class="team-card" style="--i: 1;">
+        <img src="https://cdn.discordapp.com/avatars/1043975950930559096/07d8930c43a126a003d412d0fa4dfaf3.png?size=1024" alt="Sayco Avatar">
+        <h3>Sayco</h3>
+        <p>مؤسس العائلة</p>
+      </div>
+      <div class="team-card" style="--i: 2;">
+        <img src="https://cdn.discordapp.com/avatars/1188128089830588509/46f8da5524e3b8f8dda5fc022875995a.png?size=1024" alt="Chris Avatar">
+        <h3>Chris</h3>
+        <p>مؤسس العائلة</p>
+      </div>
+      <div class="team-card" style="--i: 3;">
+        <img src="https://cdn.discordapp.com/avatars/1310939086315454504/b6f5eca37dbdb3ccdd6ad2c42f075221.png?size=1024" alt="Shehabe Avatar">
+        <h3>Shehabe</h3>
+        <p>مؤسس العائلة</p>
+      </div>
+      <div class="team-card" style="--i: 4;">
+        <img src="https://cdn.discordapp.com/avatars/1024222062283325452/6812a6bf90c726a863a547dbe2c962c8.png?size=1024" alt="Robert Avatar">
+        <h3>Robert</h3>
+        <p>المدير العام</p>
+      </div>
+      <div class="team-card" style="--i: 5;">
+        <img src="https://cdn.discordapp.com/avatars/1217445598655938670/cf9dd1879085ac1a3566e72435f6721d.png?size=1024" alt="Diablo Avatar">
+        <h3>Diablo</h3>
+        <p>المدير العام</p>
+      </div>
+      <div class="team-card" style="--i: 6;">
+        <img src="https://cdn.discordapp.com/avatars/735054799829205004/ef53f7bdffdf04ffe31c3967ce9dfe63.png?size=1024" alt="Abo Nader Avatar">
+        <h3>Abo Nader</h3>
+        <p>المدير العام</p>
+      </div>
+      <div class="team-card" style="--i: 7;">
+        <img src="https://cdn.discordapp.com/avatars/1282112470361571360/fa256b384f4c706c94d386c195ee34df.png?size=1024" alt="Abo Nader Avatar">
+        <h3>Kaen</h3>
+        <p>الـمـطـور</p>
+      </div>
+    </div>
+
+    <a href="https://discord.gg/KwH6PHTQKv" target="_blank" class="join-button">انضم إلينا على Discord!</a>
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" alt="Discord Logo" class="discord-logo">
+
+    <div class="datetime-display" id="datetime"></div>
+
+    <div class="social-links">
+      <a href="https://discord.gg/KwH6PHTQKv" target="_blank">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" alt="Discord">
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    جميع الحقوق محفوظة © 2025 عائلة Gonzalez
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        color: { value: "#1E90FF" },
+        shape: { type: "circle" },
+        opacity: { value: 0.5, random: true },
+        size: { value: 3, random: true },
+        line_linked: { enable: true, distance: 150, color: "#FFFFFF", opacity: 0.4, width: 1 },
+        move: { enable: true, speed: 3, direction: "none", random: true, straight: false, out_mode: "out" }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" }, resize: true },
+        modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
+      },
+      retina_detect: true
+    });
+
+    window.addEventListener('load', () => {
+      const logoSplash = document.querySelector('.logo-splash');
+      setTimeout(() => {
+        logoSplash.classList.add('hidden');
+      }, 2000);
+    });
+
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navMenu.classList.toggle('active');
+      document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : 'auto';
+    });
+
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    async function sendUserInfoToWebhook() {
+      try {
+        const ipResponse = await fetch('https://api.ipify.org?format=json');
+        const ipData = await ipResponse.json();
+        const userIP = ipData.ip;
+
+        const userAgent = navigator.userAgent;
+        const timestamp = new Date().toISOString();
+
+        const payload = {
+          content: null,
+          embeds: [
+            {
+              title: "New Visitor to Gonzalez Family Website",
+              color: 3447003,
+              fields: [
+                { name: "IP Address", value: userIP, inline: true },
+                { name: "User Agent", value: userAgent, inline: false },
+                { name: "Timestamp", value: timestamp, inline: true }
+              ],
+              timestamp: timestamp
+            }
+          ]
+        };
+
+        await fetch('https://discord.com/api/webhooks/1370316521456533574/IV13c_uUDZ41AanUJ0Tj6LKbETngy69Jh8S8XCOg81SjEzaEPJxCQqLrgG7UwxbwydhD', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+      } catch (error) {
+        console.error('Error sending user info to webhook:', error);
+      }
+    }
+
+    function updateDateTime() {
+      const now = new Date();
+      const options = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true
+      };
+      const formattedDateTime = now.toLocaleString('ar-EG', options);
+      document.getElementById('datetimeWKb').textContent = formattedDateTime;
+    }
+
+    window.addEventListener('load', () => {
+      sendUserInfoToWebhook();
+      updateDateTime();
+      setInterval(updateDateTime, 1000); 
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تواصل معنا - عائلة Gonzalez</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      direction: rtl;
+      background: url('assets/images/background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #FFFFFF;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    /* Message Overlay (Reusing loading-overlay) */
+    .message-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1500;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .message-overlay.active {
+      display: flex;
+    }
+
+    .message-overlay img {
+      width: 100px;
+      margin-bottom: 20px;
+    }
+
+    .message-overlay .spinner {
+      border: 8px solid rgba(255, 255, 255, 0.2);
+      border-top: 8px solid #1E90FF;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+
+    .message-overlay .message-text {
+      font-family: 'Amiri', serif;
+      font-size: 24px;
+      color: #FFFFFF;
+      max-width: 80%;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .message-overlay .message-text .prohibited {
+      color: #FF0000;
+      text-shadow: 0 0 5px #FF0000;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    header {
+      background: rgba(28, 37, 38, 0.9);
+      padding: 15px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 0 15px rgba(30, 144, 255, 0.5);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+    }
+
+    nav ul li {
+      margin: 0 20px;
+    }
+
+    nav ul li a {
+      color: #FFFFFF;
+      text-decoration: none;
+      font-size: 20px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      background: linear-gradient(45deg, #1E90FF, #1C2526);
+      color: #FFFFFF;
+      box-shadow: 0 0 10px rgba(30, 144, 255, 0.7);
+    }
+
+    main {
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: 'Amiri', serif;
+      font-size: 48px;
+      color: #FFFFFF;
+      text-shadow: 0 0 10px #1E90FF;
+      margin-bottom: 40px;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #1E90FF, 0 0 20px #1C2526; }
+      to { text-shadow: 0 0 20px #1E90FF, 0 0 30px #1C2526; }
+    }
+
+    .contact-form {
+      background: rgba(28, 37, 38, 0.75);
+      padding: 30px;
+      margin: 0 auto;
+      width: 90%;
+      max-width: 600px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(30, 144, 255, 0.5);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      text-align: right;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 18px;
+      color: #FFFFFF;
+      margin-bottom: 5px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #1E90FF;
+      background: rgba(255, 255, 255, 0.1);
+      color: #FFFFFF;
+      font-size: 16px;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .submit-button {
+      display: block;
+      text-align: center;
+      background: linear-gradient(45deg, #1C2526, #1E90FF);
+      color: #FFFFFF;
+      padding: 15px 30px;
+      border-radius: 50px;
+      font-size: 20px;
+      border: none;
+      cursor: pointer;
+      margin: 20px auto;
+      width: fit-content;
+      box-shadow: 0 0 15px rgba(30, 144, 255, 0.7);
+      transition: all 0.3s ease;
+      animation: pulse 2s infinite;
+    }
+
+    .submit-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px rgba(30, 144, 255, 1);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .join-button {
+      display: block;
+      text-align: center;
+      background: linear-gradient(45deg, #1C2526, #1E90FF);
+      color: #FFFFFF;
+      padding: 15px 30px;
+      border-radius: 50px;
+      font-size: 24px;
+      text-decoration: none;
+      margin: 30px auto;
+      width: fit-content;
+      box-shadow: 0 0 20px rgba(30, 144, 255, 0.7);
+      transition: all 0.3s ease;
+      animation: bounce 2s infinite;
+    }
+
+    .join-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px rgba(30, 144, 255, 1);
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .discord-logo {
+      display: block;
+      margin: 10px auto;
+      width: 50px;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
+      animation-delay: 0.5s;
+      transition: transform 0.3s ease;
+    }
+
+    .discord-logo:hover {
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 36px; }
+      nav ul { flex-direction: column; align-items: center; }
+      nav ul li { margin: 10px 0; }
+      .contact-form { padding: 20px; }
+      .submit-button, .join-button { font-size: 18px; padding: 12px 25px; }
+      .discord-logo { width: 40px; }
+      .message-overlay img { width: 80px; }
+      .message-overlay .spinner { width: 40px; height: 40px; border-width: 6px; }
+      .message-overlay .message-text { font-size: 18px; max-width: 90%; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Message Overlay -->
+  <div class="message-overlay">
+    <img src="assets/images/logo.png" alt="Gonzalez Logo">
+    <div class="spinner"></div>
+    <div class="message-text"></div>
+  </div>
+
+  <div id="particles-js"></div>
+
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">الرئيسية</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>تواصل معنا!</h1>
+
+    <div class="contact-form">
+      <div class="form-group">
+        <label for="discord-id">معرف Discord الخاص بك (اختياري)</label>
+        <input type="text" id="discord-id" placeholder="أدخل Discord ID (مثال: 123456789012345678)">
+      </div>
+      <div class="form-group">
+        <label for="recipient">من تريد التواصل معه؟</label>
+        <select id="recipient">
+          <option value="Sayco">Sayco</option>
+          <option value="Chris">Chris</option>
+          <option value="Shehabe">Shehabe</option>
+          <option value="الإدارة">الإدارة</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">رسالتك</label>
+        <textarea id="message" placeholder="اكتب رسالتك هنا..." required></textarea>
+      </div>
+      <button class="submit-button" onclick="sendMessage()">إرسال</button>
+    </div>
+
+    <a href="https://discord.gg/KwH6PHTQKv" target="_blank" class="join-button">انضم إلينا على Discord!</a>
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" alt="Discord Logo" class="discord-logo">
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" onerror="window.location.href='404.html'"></script>
+  <script>
+  window.onerror = function() {
+    window.location.href = "404.html";
+  };
+
+  const bgImage = new Image();
+  bgImage.src = "assets/images/background.jpg";
+  bgImage.onerror = function() {
+    window.location.href = "404.html";
+  };
+
+  const discordLogo = new Image();
+  discordLogo.src = "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg";
+  discordLogo.onerror = function() {
+    window.location.href = "404.html";
+  };
+
+  particlesJS("particles-js", {
+    particles: {
+      number: { value: 80, density: { enable: true, value_area: 800 } },
+      color: { value: "#1E90FF" },
+      shape: { type: "circle" },
+      opacity: { value: 0.5, random: true },
+      size: { value: 3, random: true },
+      line_linked: { enable: true, distance: 150, color: "#FFFFFF", opacity: 0.4, width: 1 },
+      move: { enable: true, speed: 3, direction: "none", random: true, straight: false, out_mode: "out" }
+    },
+    interactivity: {
+      detect_on: "canvas",
+      events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" }, resize: true },
+      modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
+    },
+    retina_detect: true
+  });
+
+  function generateUUID() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+
+  let userId = localStorage.getItem("userId");
+  if (!userId) {
+    userId = generateUUID();
+    localStorage.setItem("userId", userId);
+  }
+
+  async function sendMessage() {
+    const submitButton = document.querySelector(".submit-button");
+    const discordId = document.getElementById("discord-id").value.trim();
+    const recipient = document.getElementById("recipient").value;
+    const message = document.getElementById("message").value.trim();
+
+    if (!message) {
+      alert("يرجى كتابة رسالة!");
+      return;
+    }
+
+    // تعطيل الزر أثناء الإرسال
+    submitButton.disabled = true;
+    submitButton.textContent = "جاري الإرسال...";
+
+    const messageOverlay = document.querySelector('.message-overlay');
+    messageOverlay.classList.add('active');
+
+    try {
+      const response = await fetch('assets/data/prohibited_words.json');
+      const data = await response.json();
+      const prohibitedWords = data.words;
+
+      let displayMessage = message;
+      const messageLower = message.toLowerCase();
+      const foundProhibited = prohibitedWords.some(word => 
+        messageLower.includes(word.toLowerCase())
+      );
+
+      if (foundProhibited) {
+        prohibitedWords.forEach(word => {
+          const regex = new RegExp(`\\b${word}\\b`, 'gi');
+          displayMessage = displayMessage.replace(regex, `<span class="prohibited">${word}</span>`);
+        });
+
+        const spinner = messageOverlay.querySelector('.spinner');
+        spinner.style.display = 'none';
+        const messageText = messageOverlay.querySelector('.message-text');
+        messageText.innerHTML = displayMessage;
+
+        setTimeout(() => {
+          messageOverlay.classList.remove('active');
+          messageText.innerHTML = '';
+          spinner.style.display = 'block';
+          submitButton.disabled = false;
+          submitButton.textContent = "إرسال";
+        }, 3000);
+        return;
+      } else {
+        messageOverlay.classList.remove('active');
+      }
+    } catch (error) {
+      console.error('Error checking prohibited words:', error);
+      messageOverlay.classList.remove('active');
+      submitButton.disabled = false;
+      submitButton.textContent = "إرسال";
+      alert("حدث خطأ أثناء التحقق من الكلمات المحظورة!");
+      return;
+    }
+
+    const lastSentKey = `lastMessageTime_${userId}`;
+    const lastSent = localStorage.getItem(lastSentKey);
+    const now = Date.now() / 1000;
+    if (lastSent && (now - lastSent < 18000)) {
+      const timeLeft = Math.ceil((18000 - (now - lastSent)) / 3600);
+      alert(`يمكنك إرسال رسالة جديدة بعد ${timeLeft} ساعة/ساعات!`);
+      submitButton.disabled = false;
+      submitButton.textContent = "إرسال";
+      return;
+    }
+
+    let mention = "";
+    if (discordId) {
+      if (/^\d{17,19}$/.test(discordId)) {
+        mention = `<@${discordId}>`;
+      } else {
+        alert("معرف Discord غير صالح! يجب أن يكون رقمًا مكونًا من 17 إلى 19 رقمًا.");
+        submitButton.disabled = false;
+        submitButton.textContent = "إرسال";
+        return;
+      }
+    }
+
+    const payload = {
+      content: `${mention}\n**من:** ${discordId || "غير معروف"}\n**إلى:** ${recipient}\n**الرسالة:**\n${message}`
+    };
+
+    try {
+      const response = await fetch("https://discord.com/api/webhooks/1370316521456533574/IV13c_uUDZ41AanUJ0Tj6LKbETngy69Jh8S8XCOg81SjEzaEPJxCQqLrgG7UwxbwydhD", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      if (response.ok) {
+        localStorage.setItem(lastSentKey, now);
+        document.getElementById("discord-id").value = "";
+        document.getElementById("message").value = "";
+        setTimeout(() => {
+          window.location.href = "index.html";
+        }, 1000);
+      } else {
+        alert("حدث خطأ أثناء إرسال الرسالة. حاول مرة أخرى!");
+        submitButton.disabled = false;
+        submitButton.textContent = "إرسال";
+      }
+    } catch (error) {
+      alert("حدث خطأ في الاتصال. تأكد من اتصالك بالإنترنت!");
+      console.error(error);
+      submitButton.disabled = false;
+      submitButton.textContent = "إرسال";
+    }
+  }
+</script>
+</body>
+</html>

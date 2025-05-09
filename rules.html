@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>قوانين عائلة Gonzalez</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      direction: rtl;
+      background: url('assets/images/background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #FFFFFF;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    header {
+      background: rgba(28, 37, 38, 0.9);
+      padding: 15px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 0 15px rgba(30, 144, 255, 0.5);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+    }
+
+    nav ul li {
+      margin: 0 20px;
+    }
+
+    nav ul li a {
+      color: #FFFFFF;
+      text-decoration: none;
+      font-size: 20px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      background: linear-gradient(45deg, #1E90FF, #1C2526);
+      color: #FFFFFF;
+      box-shadow: 0 0 10px rgba(30, 144, 255, 0.7);
+    }
+
+    main {
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    .rules-container {
+      background: rgba(28, 37, 38, 0.75);
+      padding: 40px;
+      margin: 0 auto;
+      width: 90%;
+      max-width: 1000px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(30, 144, 255, 0.5);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    h1 {
+      font-family: 'Amiri', serif;
+      font-size: 48px;
+      color: #FFFFFF;
+      text-shadow: 0 0 10px #1E90FF;
+      margin-bottom: 20px;
+      animation: glow 2s infinite alternate;
+    }
+
+    h2 {
+      font-family: 'Cairo', sans-serif;
+      font-size: 32px;
+      color: #1E90FF;
+      margin: 30px 0 20px;
+    }
+
+    p {
+      font-size: 20px;
+      color: #FFFFFF;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: slideIn 0.8s ease forwards;
+      animation-delay: 0.2s;
+    }
+
+    ul {
+      list-style-type: arabic-indic;
+      padding-right: 40px;
+      margin-bottom: 30px;
+    }
+
+    ul li {
+      font-size: 18px;
+      color: #FFFFFF;
+      margin-bottom: 15px;
+      text-align: right;
+      opacity: 0;
+      animation: slideIn 0.8s ease forwards;
+      animation-delay: calc(0.2s * var(--i));
+      transition: transform 0.3s ease;
+    }
+
+    ul li:hover {
+      transform: translateX(-10px);
+      color: #1E90FF;
+    }
+
+    .join-button {
+      display: block;
+      text-align: center;
+      background: linear-gradient(45deg, #1C2526, #1E90FF);
+      color: #FFFFFF;
+      padding: 15px 30px;
+      border-radius: 50px;
+      font-size: 24px;
+      text-decoration: none;
+      margin: 30px auto;
+      width: fit-content;
+      box-shadow: 0 0 20px rgba(30, 144, 255, 0.7);
+      transition: all 0.3s ease;
+      animation: bounce 2s infinite;
+    }
+
+    .join-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px rgba(30, 144, 255, 1);
+    }
+
+    .discord-logo {
+      display: block;
+      margin: 10px auto;
+      width: 50px;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
+      animation-delay: 0.5s;
+      transition: transform 0.3s ease;
+    }
+
+    .discord-logo:hover {
+      transform: scale(1.1);
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #1E90FF, 0 0 20px #1C2526; }
+      to { text-shadow: 0 0 20px #1E90FF, 0 0 30px #1C2526; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 36px; }
+      h2 { font-size: 28px; }
+      p, ul li { font-size: 16px; }
+      nav ul { flex-direction: column; align-items: center; }
+      nav ul li { margin: 10px 0; }
+      .rules-container { padding: 20px; }
+      .join-button { font-size: 20px; padding: 12px 25px; }
+      .discord-logo { width: 40px; }
+      ul { padding-right: 30px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">الرئيسية</a></li>
+
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="rules-container">
+      <h1>📜 قوانين عائلة Gonzalez</h1>
+      <p>مرحبًا بك في عائلة <strong>Gonzalez Family</strong>! لضمان بيئة ممتعة وآمنة للجميع، نرجو منك الالتزام بهذه القوانين. القوانين مصممة لتعزيز الاحترام المتبادل والتعاون بين الأعضاء.</p>
+
+      <h2>قوانين العائلة</h2>
+      <ul>
+        <li style="--i: 1;">اتبع القوانين لتجنب المشاكل.</li>
+        <li style="--i: 2;">ممنوع منعًا باتًا أي سب، شتم، لفظ خارج، أو الحديث في السياسة أو الدين أو أي شيء خارج نطاق الأدب.</li>
+        <li style="--i: 3;">لا تعلن عن سيرفر، موقع، أو قناة يوتيوب بدون إذن من الإدارة.</li>
+        <li style="--i: 4;">لا تدّعي أنك أدمن تحت أي ظرف.</li>
+        <li style="--i: 5;">تجنب إثارة المشاكل في السيرفر أو في الرسائل الخاصة.</li>
+        <li style="--i: 6;">احترم جميع الأعضاء مع مراعاة خصوصيتهم.</li>
+        <li style="--i: 7;">التزم بنظام كل قناة (تشانل) في السيرفر.</li>
+        <li style="--i: 8;">ممنوع السبام أو استخدام أسماء/صور غير لائقة.</li>
+        <li style="--i: 9;">ممنوع نشر أي روابط في أي قناة بدون إذن.</li>
+        <li style="--i: 10;">عقوبات كسر القوانين: المرة الأولى تحذير، الثانية ميوت، الثالثة حظر (بان).</li>
+        <li style="--i: 11;">لأي استفسار أو شكوى، تواصل مع أحد المنظمين.</li>
+        <li style="--i: 12;">إذا كنت مرشدًا، لا تفرض نفسك داخل العائلة أو السيرفر.</li>
+      </ul>
+
+      <h2>قوانين Discord الرسمية</h2>
+      <p>بالإضافة إلى قوانين العائلة، يجب على جميع الأعضاء الالتزام بإرشادات Discord الرسمية لضمان تجربة آمنة وممتعة:</p>
+      <ul>
+        <li style="--i: 13;">كن محترمًا: تجنب التحرش، التنمر، أو التمييز بناءً على العرق، الجنس، الدين، أو أي خصائص شخصية.</li>
+        <li style="--i: 14;">حافظ على الأمان: ممنوع مشاركة محتوى ضار، تهديدات، أو معلومات شخصية دون إذن.</li>
+        <li style="--i: 15;">التزم بالقوانين: لا تشارك محتوى غير قانوني أو ينتهك حقوق الملكية الفكرية.</li>
+        <li style="--i: 16;">تجنب المحتوى غير اللائق: ممنوع المحتوى الجنسي الصريح، العنيف، أو غير المناسب للأعمار.</li>
+        <li style="--i: 17;">لا تروج للضرر: ممنوع تشجيع إيذاء النفس، العنف، أو السلوكيات المحفوفة بالمخاطر.</li>
+        <li style="--i: 18;">تجنب السبام والاحتيال: لا تنشر إعلانات غير مصرح بها، روابط خادعة، أو محتوى مزيف.</li>
+        <li style="--i: 19;">احترم خصوصية الآخرين: لا تشارك محادثات خاصة أو لقطات شاشة دون موافقة.</li>
+        <li style="--i: 20;">التزم بسياسات السيرفر: اتبع القوانين المحلية لكل سيرفر بالإضافة إلى إرشادات Discord.</li>
+      </ul>
+
+      <p>💡 التزامك بهذه القوانين يساعد في بناء مجتمع قوي ومترابط. إذا كنت جاهزًا للانضمام إلينا، اضغط على الزر أدناه!</p>
+      <a href="https://discord.gg/KwH6PHTQKv" target="_blank" class="join-button">انضم إلينا على Discord!</a>
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" alt="Discord Logo" class="discord-logo">
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" onerror="window.location.href='404.html'"></script>
+  <script>
+    window.onerror = function() {
+      window.location.href = "404.html";
+    };
+
+    const bgImage = new Image();
+    bgImage.src = "assets/images/background.jpg";
+    bgImage.onerror = function() {
+      window.location.href = "404.html";
+    };
+
+    const discordLogo = new Image();
+    discordLogo.src = "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg";
+    discordLogo.onerror = function() {
+      window.location.href = "404.html";
+    };
+
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        color: { value: "#1E90FF" },
+        shape: { type: "circle" },
+        opacity: { value: 0.5, random: true },
+        size: { value: 3, random: true },
+        line_linked: { enable: true, distance: 150, color: "#FFFFFF", opacity: 0.4, width: 1 },
+        move: { enable: true, speed: 3, direction: "none", random: true, straight: false, out_mode: "out" }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" }, resize: true },
+        modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
+      },
+      retina_detect: true
+    });
+  </script>
+</body>
+</html>
